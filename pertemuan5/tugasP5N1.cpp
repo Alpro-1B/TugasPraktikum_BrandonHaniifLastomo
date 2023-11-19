@@ -5,12 +5,9 @@ using namespace std;
     int jumlahGenap = 0; // variabel untuk menampung nilai jumlah bilangan genap
     int jumlahPrima = 0; // variabel untuk menampung nilai jumlah bilangan prima
 
-void printGanjil();
-void printFaktorGanjil();
-void printGenap();
-void printFaktorGenap();
-void printPrima();
-void printFaktorPrima();
+// parameter fungsi diisi sesuai jenis bilangan yang ingin ditampilkan
+void printBilangan(string);
+void printFaktorJumlah(string);
 
 int main(){
     cout << "Selamat Datang di Program Penampil Bilangan\n";
@@ -27,13 +24,15 @@ int main(){
     // bagian bilangan ganjil
     cout << "A. Bilangan Ganjil\n";
 
-    // memanggil fungsi penampil bilangan ganjil
-    printGanjil();
+    cout << "Bilangan ganjil dari angka 1 hingga " << batas << " adalah: ";
+    // memanggil fungsi penampil bilangan dengan parameter ganjil
+    printBilangan("ganjil");
 
     cout << "\nJumlah bilangan ganjil dari angka 1 hingga " << batas << " adalah: " << jumlahGanjil;
 
-    // memanggil fungsi penampil faktor dari jumlah bilangan ganjil
-    printFaktorGanjil();
+    cout << "\nFaktor-faktor dari jumlah bilangan ganjil tersebut adalah: ";
+    // memanggil fungsi penampil faktor dengan parameter ganjil
+    printFaktorJumlah("ganjil");
     // akhir dari bagian bilangan ganjil
 
 
@@ -43,14 +42,16 @@ int main(){
     // bagian bilangan genap
     cout << "B. Bilangan Genap\n";
     
-    // memanggil fungsi penampil bilangan genap
-    printGenap();
+    cout << "Bilangan genap dari angka 1 hingga " << batas << " adalah: ";
+    // memanggil fungsi penampil bilangan dengan parameter genap
+    printBilangan("genap");
 
     // menampilkan jumlah deret bilangan genap hingga batas angka
     cout << "\nJumlah bilangan genap dari angka 1 hingga " << batas << " adalah: " << jumlahGenap;
 
-    // memanggil fungsi penampil faktor dari jumlah bilangan genap
-    printFaktorGenap();
+    cout << "\nFaktor-faktor dari jumlah bilangan genap tersebut adalah: ";
+    // memanggil fungsi penampil faktor dengan parameter genap
+    printFaktorJumlah("genap");
     // akhir dari bagian bilangan genap
 
 
@@ -60,103 +61,101 @@ int main(){
     // bagian bilangan prima
     cout << "C. Bilangan Prima\n";
 
-    // memanggil fungsi penampil bilangan prima
-    printPrima();
+    cout << "Bilangan prima dari angka 1 hingga " << batas << " adalah: ";
+    // memanggil fungsi penampil bilangan dengan parameter prima
+    printBilangan("prima");
 
     // menampilkan jumlah deret bilangan prima hingga batas angka
     cout << "\nJumlah bilangan prima dari angka 1 hingga " << batas << " adalah: " << jumlahPrima;
 
-    // memanggil fungsi penampil faktor dari jumlah bilangan prima
-    printFaktorPrima();
+    cout << "\nFaktor-faktor dari jumlah bilangan prima tersebut adalah: ";
+    // memanggil fungsi penampil faktor dengan parameter prima
+    printFaktorJumlah("prima");
     // akhir dari bagian bilangan prima
 
     return 0;
 }
 
-void printGanjil(){
-    // loop bilangan bulat dari angka 1 hingga angka yang diinputkan user
+void printBilangan(string jenisBilangan){
     for (int i = 1; i <= batas; i++){
-        if (i == 1){
-            cout << "Bilangan ganjil dari angka 1 hingga " << batas << " adalah: ";
-        }
+
+        // bagian fungsi untuk menampilkan bilangan ganjil
+        if (jenisBilangan == "ganjil"){
         // menyaring bilangan ganjil dari angka 1 hingga angka yang diinputkan user
-        if (i % 2 != 0){
-            cout << i << " ";
-            // memasukkan bilangan-bilangan ganjil yang telah disaring ke variabel jumlah
-            jumlahGanjil+=i;
-        }
-    }
-}
-
-void printFaktorGanjil(){
-    cout << "\nFaktor-faktor dari jumlah bilangan ganjil tersebut adalah: ";
-    
-    for (int i = 1; i <= jumlahGanjil; i++){
-    // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
-        if (jumlahGanjil % i == 0){
-            cout << i << " ";
-        }
-    }
-}
-
-void printGenap(){
-    // loop bilangan bulat dari angka 1 hingga angka yang diinputkan user
-    for (int i = 1; i <= batas; i++){
-        if (i == 1){
-            cout << "Bilangan genap dari 1 hingga " << batas << " adalah: ";
-        }
-        // menyaring bilangan genap dari angka 1 hingga angka yang diinputkan user
-        if (i % 2 == 0){
-            cout << i << " ";
-            // memasukkan bilangan-bilangan genap yang telah disaring ke variabel jumlah
-            jumlahGenap+=i;
-        }
-    }
-}
-
-void printFaktorGenap(){
-    cout << "\nFaktor-faktor dari jumlah bilangan genap tersebut adalah: ";
-
-    for (int i = 1; i <= jumlahGenap; i++){
-    // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
-        if (jumlahGenap % i == 0){
-            cout << i << " ";
-        }
-        
-    }
-}
-
-void printPrima(){
-    // loop bilangan bulat dari angka 1 hingga angka yang diinputkan user
-    for (int i = 1; i <= batas; i++){
-        if (i == 1){
-            cout << "Bilangan prima dari 1 hingga " << batas << " adalah: ";
-        }
-        // loop untuk bilangan yang akan dibagi
-        for (int j = 2; j <= batas; j++){
-            // jika faktor suatu angka bukan dirinya sendiri, maka skip angka tersebut
-            if (i % j == 0 && i != j){
-                break;
-                // jika suatu angka bernilai lebih dari 1 dan faktornya adalah diri sendiri, maka tampilkan
-            } else if (i > 1 && i % j == 0 && i == j){
+            if (i % 2 != 0){
                 cout << i << " ";
-                // memasukkan bilangan-bilangan prima yang telah disaring ke variabel jumlah
-                jumlahPrima+=i;
+                // memasukkan bilangan-bilangan ganjil yang telah disaring ke variabel jumlah
+                jumlahGanjil+=i;
             }
         }
+        // akhir bagian fungsi penampil ganjil
+
+        // bagian fungsi untuk menampilkan bilangan genap
+        else if (jenisBilangan == "genap"){
+        // menyaring bilangan ganjil dari angka 1 hingga angka yang diinputkan user
+            if (i % 2 == 0){
+                cout << i << " ";
+                // memasukkan bilangan-bilangan ganjil yang telah disaring ke variabel jumlah
+                jumlahGenap+=i;
+            }
+        } 
+        // akhir bagian fungsi penampil genap
         
+        // bagian fungsi untuk menampilkan bilangan prima
+        else {
+            // loop untuk bilangan yang akan dibagi
+            for (int j = 2; j <= batas; j++){
+                // jika faktor suatu angka bukan dirinya sendiri, maka skip angka tersebut
+                if (i % j == 0 && i != j){
+                    break;
+                    // jika suatu angka bernilai lebih dari 1 dan faktornya adalah diri sendiri, maka tampilkan
+                } else if (i > 1 && i % j == 0 && i == j){
+                    cout << i << " ";
+                    // memasukkan bilangan-bilangan prima yang telah disaring ke variabel jumlah
+                    jumlahPrima+=i;
+                }
+            }
+        }
+        // akhir bagian fungsi penampil prima
+
     }
 }
 
-void printFaktorPrima(){
-    cout << "\nFaktor-faktor dari jumlah bilangan prima tersebut adalah: ";
 
-    // loop dari angka 1 hingga nilai jumlah bilangan prima untuk mencari faktornya
-    for (int i = 1; i <= jumlahPrima; i++){
-    // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
-        if (jumlahPrima % i == 0){
-            cout << i << " ";
+
+void printFaktorJumlah(string jenisBilangan){
+
+    // bagian fungsi untuk menampilkan faktor dari jumlah bilangan ganjil
+    if (jenisBilangan == "ganjil"){
+        for (int i = 1; i <= jumlahGanjil; i++){
+        // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
+            if (jumlahGanjil % i == 0){
+                cout << i << " ";
+            }
         }
-        
     }
+    // akhir bagian fungsi penampil faktor jumlah ganjil
+
+    // bagian fungsi untuk menampilkan faktor dari jumlah bilangan genap
+    else if (jenisBilangan == "genap"){
+        for (int i = 1; i <= jumlahGenap; i++){
+        // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
+            if (jumlahGenap % i == 0){
+                cout << i << " ";
+            }   
+        } 
+    }
+    // akhir bagian fungsi penampil faktor jumlah ganjil
+
+    // bagian fungsi untuk menampilkan faktor dari jumlah bilangan prima
+    else{
+        for (int i = 1; i <= jumlahPrima; i++){
+        // jika nilai i habis dibagi, maka nilai tersebut adalah faktornya
+            if (jumlahPrima % i == 0){
+                cout << i << " ";
+            }
+        }   
+    }
+    // akhir bagian fungsi penampil faktor jumlah prima
+
 }
