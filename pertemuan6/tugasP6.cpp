@@ -28,9 +28,9 @@ int main(){
         if (b+1 == sizeArr){
             cout << nilai[b];
         } else {
-            // membandingkan nilai untuk mencari yang terbesar
+            // membandingkan nilai untuk mencari yang tertinggi
             if (nilai[b] > nilai[b+1]){
-                // mengurutkan nilai
+                // mencari yang tertinggi
                 // nilai array yang lebih tinggi dimasukkan ke array ke-indeks selanjutnya untuk pemeriksaan selanjutnya
                 nilai[b+1] = nilai[b];
                 // nilai array yang lebih rendah dimasukkan ke array ke-indeks b agar nilai tertinggi berada di indeks terakhir
