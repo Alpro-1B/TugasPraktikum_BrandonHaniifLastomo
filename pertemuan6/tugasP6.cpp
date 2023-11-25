@@ -17,8 +17,9 @@ int main(){
     } while (sizeArr <= 0);
     // akhir dari handle
     
-    int nilai[sizeArr]; // deklarasi array dengan ukuran array berdasarkan input user
-    
+    int nilai[sizeArr]; // deklarasi array penampung nilai inputan user dengan ukuran array berdasarkan input user
+    int indeksNilai[sizeArr]; // deklarasi array untuk print indeks nilai tertinggi
+
     cout << endl;
 
     // loop untuk input value array
@@ -29,33 +30,54 @@ int main(){
     }
     // akhir dari loop input value array
     
-    
-    if (sizeArr == 1){
-        // kalimat jika hanya ada satu data
-        cout << "\nKarena hanya ada satu nilai, maka nilai tertingginya adalah: ";
-    } else {
-        // jika lebih dari satu data
-        cout << "\nNilai tertinggi dari nilai-nilai yang Anda masukkan adalah: ";
+
+    // memasukkan value array nilai ke array indeksNilai agar indeks bisa diprint
+    for (int i = 0; i < sizeArr; i++){
+        indeksNilai[i] = nilai[i];
     }
+    // akhir dari memasukkan value
     
     
     // loop untuk mencari nilai tertinggi
     for (int b = 0; b < sizeArr; b++){
         // jika indeks+1 sama dengan ukuran array, keluarkan nilai array terakhir
         if (b+1 == sizeArr){
-            cout << nilai[b];
+            break;
         } else {
             // membandingkan nilai untuk mencari yang tertinggi
             if (nilai[b] > nilai[b+1]){
-                // mencari yang tertinggi
-                // nilai array yang lebih tinggi dimasukkan ke array ke-indeks selanjutnya untuk pemeriksaan selanjutnya
-                nilai[b+1] = nilai[b];
-                // nilai array yang lebih rendah dimasukkan ke array ke-indeks b agar nilai tertinggi berada di indeks terakhir
-                nilai[b] = nilai[b+1];
+                // menukar value agar nilai tertinggi berada paling belakang
+                nilai[b+1] = nilai[b+1] + nilai[b]; 
+                nilai[b] = nilai[b+1] - nilai[b]; 
+                nilai[b+1] = nilai[b+1] - nilai[b]; 
             }
         }
     }
     // akhir dari loop untuk mencari nilai tertinggi
+
+
+    // print pesan kepada user
+    for (int c = 0; c < sizeArr; c++){
+        // jika semua nilai yang diinput bernilai sama (tidak ada nilai tertinggi)
+        if (nilai[sizeArr-1] == nilai[c]){
+            if (c+1 == sizeArr){
+                cout << "Tidak ada nilai tertinggi dari nilai-nilai yang Anda masukkan.\n";
+            }
+        // jika nilai yang diinput berbeda (ada nilai tertinggi)
+        } else {
+            for (int d = 0; d < sizeArr; d++){
+                // mencari indeks nilai tertinggi dengan membandingkan value
+                if (nilai[sizeArr-1] == indeksNilai[d]){
+                    cout << "Nilai tertinggi dari nilai-nilai yang Anda masukkan adalah: " << indeksNilai[d] << " yang berada di indeks ke-" << d << endl;
+                    c = sizeArr;
+                }
+            }
+            
+        }
+        
+    }
+    // akhir dari print pesan
+
     
     return 0;
 }
